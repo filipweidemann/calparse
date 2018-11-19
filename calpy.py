@@ -34,6 +34,9 @@ class CalDavParser(caldav.DAVClient):
         self.principal = None
 
     def init_client(self):
+        if not self.password or not self.username:
+            raise ValueError('Cannot create CalDAV Client without explicitly set attributes "username" and "password".')
+
         self.client = caldav.DAVClient(self.url, username=self.username, password=self.password)
         self.principal = self.client.principal()
 
