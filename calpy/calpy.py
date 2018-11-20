@@ -79,3 +79,17 @@ class CalDavParser(caldav.DAVClient):
         
         return events
 
+if __name__ == '__main__':
+    url = os.environ.get('CALDAV_URL')
+    username = os.environ.get('CALDAV_USER')
+    password = os.environ.get('CALDAV_PASS')
+    today = datetime.now().replace(microsecond=0, second=0, minute=0, hour=0)
+    tomorrow = (today + timedelta(days=1)).replace(microsecond=0, second=59, minute=59, hour=23)
+
+    p = CalDavParser(url, username=username, password=password, start_date=today, end_date=tomorrow, single_calendar=False)
+    p.init_client()
+    results = p.get_events_by_date()
+
+    for r in results:
+        print(r)
+

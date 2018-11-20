@@ -2,3 +2,7 @@
 .DS_Store
 main.py
 .calpy.py.swp
+.LICENSE.swp
+build/
+calpy.egg-info/
+dist/
