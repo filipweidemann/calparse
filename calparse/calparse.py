@@ -66,7 +66,7 @@ class CalDavParser(caldav.DAVClient):
                         for line in sub_event:
                             key, value = line.split(':', 1)
                             if key in self.parse_list:
-                                parsed_sub[key] = value
+                                parsed_sub[key] = value.replace('\\,', ',').replace('\\;', ';').replace('\\n', '\n')
                         parsed.append(parsed_sub)
                     events.extend(parsed)
                 else:
@@ -77,5 +77,5 @@ class CalDavParser(caldav.DAVClient):
                             parsed[key] = value
                     events.append(parsed)
         
-        return events
+        return list(filter(None, events))
 
