@@ -1,8 +1,8 @@
 .env
 .DS_Store
 main.py
-.calpy.py.swp
+.calparse.py.swp
 .LICENSE.swp
 build/
-calpy.egg-info/
+calparse.egg-info/
 dist/

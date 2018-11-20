@@ -4,7 +4,7 @@ with open('README.md', 'r') as readme:
     long_description = readme.read()
 
 setuptools.setup(
-    name='calpy',
+    name='calparse',
     version='0.1',
     author='Filip Weidemann',
     author_email='filip.weidemann@outlook.de',
