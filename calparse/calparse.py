@@ -32,6 +32,10 @@ class CalDavParser(caldav.DAVClient):
         self.is_single_calendar = single_calendar
         self.client = None
         self.principal = None
+    
+    @classmethod
+    def parse_escaped(value):
+        return value.replace('\\,', ',').replace('\\;', ';').replace('\\n', '\n')
 
     def init_client(self):
         if not self.password or not self.username:
@@ -66,7 +70,7 @@ class CalDavParser(caldav.DAVClient):
                         for line in sub_event:
                             key, value = line.split(':', 1)
                             if key in self.parse_list:
-                                parsed_sub[key] = value.replace('\\,', ',').replace('\\;', ';').replace('\\n', '\n')
+                                parsed_sub[key] = self.parse_escaped(value)
                         parsed.append(parsed_sub)
                     events.extend(parsed)
                 else:
@@ -74,7 +78,7 @@ class CalDavParser(caldav.DAVClient):
                     for line in lines:
                         key, value = line.split(':', 1)
                         if key in self.parse_list:
-                            parsed[key] = value
+                            parsed[key] = self.parse_escaped(value)
                     events.append(parsed)
         
         return list(filter(None, events))

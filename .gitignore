@@ -5,4 +5,5 @@ main.py
 .LICENSE.swp
 build/
 calparse.egg-info/
+calparse/__pycache__
 dist/
