@@ -33,8 +33,7 @@ class CalDavParser(caldav.DAVClient):
         self.client = None
         self.principal = None
     
-    @classmethod
-    def parse_escaped(value):
+    def parse_escaped(self, value):
         return value.replace('\\,', ',').replace('\\;', ';').replace('\\n', '\n')
 
     def init_client(self):
