@@ -88,6 +88,9 @@ class CalDavParser(caldav.DAVClient):
                         if key in self.parse_list:
                             parsed[key] = self.parse_escaped(value)
 
+                        if key == "DTSTART;VALUE=DATE":
+                            parsed["DATE"] = value
+
                     if not ("DTSTART" and "DTEND" in parsed):
                         parsed["ALLDAY"] = 1
 
