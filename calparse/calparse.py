@@ -67,6 +67,7 @@ class CalDavParser(caldav.DAVClient):
                     for line in event.data.replace("\r\n ", "").split("\r\n")
                     if line.strip()
                 ]
+                print(lines)
                 if sum("END:VEVENT" in line for line in lines) > 1:
                     parsed = []
                     sub_events = [
@@ -91,7 +92,7 @@ class CalDavParser(caldav.DAVClient):
                         if key == "DTSTART;VALUE=DATE":
                             parsed["DATE"] = value
 
-                    if not ("DTSTART" and "DTEND" in parsed):
+                    if parsed and not ("DTSTART" and "DTEND" in parsed):
                         parsed["ALLDAY"] = 1
 
                     events.append(parsed)

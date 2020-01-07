@@ -5,7 +5,7 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="calparse",
-    version="0.5.1",
+    version="0.5.2",
     author="Filip Weidemann",
     author_email="filip.weidemann@outlook.de",
     description="A lightweigh CalDAV parser",
